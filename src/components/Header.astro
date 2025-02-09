@@ -1,5 +1,42 @@
 ---
+import Link from '../components/Link.astro'
 ---
-<div>
-Header - tilføj navigation mm.
+<div x-data="{ showmenu: false }" class="bg-gray-100 p-4 fixed lg:static w-full bgg-slate-200 mb-16" >
+    <div id="navbar" class="flex flex-row justify-between">
+        <div id="logo" class="my-auto lg:text-2xl">
+            <a href="#link1">Site logo</a>
+        </div>
+        <!-- Desktop Menu -->
+        <nav id="desktopmenu" class="hidden lg:block">
+            <ul class="lg:flex flex-row gap-4">
+                <li class=""><Link size="small" href="#" >Københavnerbilleder</Link></li><!-- alternativt: lav et <a href="">Link</a>, hvis du ikke vil bruge Link.astro komponenten -->
+                <li class=""><Link size="small" href="#" >Bogens indhold</Link></li>
+                <li class=""><Link size="small" href="#" >Forfatteren</Link></li>
+                <li class=""><Link size="small" href="#" >Køb nu</Link></li>
+            </ul>
+        </nav>
+        <button id="burgermenu" class="lg:hidden" x-on:click="showmenu = ! showmenu">Menu</button>
+    </div>
+    <!-- Bobile menu -->
+    <nav id="mobilmenu" class="flex flex-col content-center pt-4 bg-white" 
+    x-show="showmenu" x-transition x-on:click="showmenu = false" x-on:click.outside="showmenu = false">
+        <ul >
+            <li class="text-center py-2 border-y-2"><Link size="small" href="#" >Københavnerbilleder</Link></li>
+            <li class="text-center py-2 border-b-2"><Link size="small" href="#" >Bogens indhold</Link></li>
+            <li class="text-center py-2 border-b-2"><Link size="small" href="#" >Forfatteren</Link></li>
+            <li class="text-center py-2 border-b-2"><Link size="small" href="#" >Køb nu</Link></li>
+        </ul>
+    </nav>
 </div>
+
+<!-- ---
+---
+<div class="flex justify-between">
+<div>Logo</div>
+<ul class=" flex gap-10 content-end">
+    <li><a href="#">Københavnerbilleder</a></li>
+    <li><a href="#">Bogens indhold</a></li>
+    <li><a href="#">Forfatteren</a></li>
+    <li><a href="#">Køb nu</a></li>
+</ul>
+</div> -->
